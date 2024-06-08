@@ -1,0 +1,170 @@
+f=@(x) exp(sin(x.^2))+sqrt(x.^4+3).*sin(exp(-1./(1+abs(x))));
+fplot(f,[1.8,2.1])
+grid
+diary off
+minimo=fminbnd(f,1.8,2.1)
+
+minimo =
+
+    1.8738
+
+valore_minimo=f(minimo)
+
+valore_minimo =
+
+    3.2373
+
+% verifica bruta
+x=linspace(1.8,2.1,500);
+y=f(x);
+any(y<valore_minimo)
+
+ans =
+
+     0
+
+any(y<=valore_minimo)
+
+ans =
+
+     0
+
+minimo2=fminbnd(f,-1,1)
+
+minimo2 =
+
+     0
+
+valore_minimo2=f(minimo2)
+
+valore_minimo2 =
+
+    1.6229
+
+minimo3=fminbnd(f,-2.85,3.75)
+
+minimo3 =
+
+  1.2600e-005
+
+valore_minimo3=f(minimo3)
+
+valore_minimo3 =
+
+    1.6229
+
+f=@(x) 3+(x+1).^2+0.45*(sin(2*(x+1))).^2;
+fplot(f,[-2,2])
+shg
+%applicare il metodo di minimizzazione di Newton (usare la function Newton per calcolare lo zero di f')
+% usare funtool per l'espressione delle derivate
+diary off
+% le derivate determinate da funtool sono:
+% f' = 2*x + 1.8*cos(2*x + 2)*sin(2*x + 2) + 2
+% f'' = 3.6*cos(4*x + 4) + 2.0
+df1=@(x) 2*x + 1.8*cos(2*x + 2).*sin(2*x + 2) + 2;
+df2=@(x) 3.6*cos(4*x + 4) + 2.0;
+minimo=Newton(df1,df2,-0.3,1e-6,20)
+   -0.3000    1.2223
+
+    0.9223    1.8272
+
+   -0.9048    0.0982
+
+   -1.0031    0.0031
+
+   -1.0000    0.0000
+
+
+minimo =
+
+   -1.0000
+
+valore_minimo=f(minimo)
+
+valore_minimo =
+
+    3.0000
+
+fminbnd(f,-2,0)
+
+ans =
+
+   -1.0000
+
+minimo=MinimNewtonDF(f,-0.3,-0.5,1e-6,20)
+   -0.3000    2.8428
+
+    2.5428   -0.3000   -0.4000    4.9198
+
+   -2.3770    2.5428   -0.3000    5.4916
+
+   -7.8687   -2.3770    2.5428   -4.3414
+
+   -3.5273   -7.8687   -2.3770   37.4632
+
+  -40.9904   -3.5273   -7.8687  -48.0845
+
+    7.0940  -40.9904   -3.5273 -144.5158
+
+  151.6098    7.0940  -40.9904  120.5781
+
+   31.0317  151.6098    7.0940 -930.1550
+
+  1.0e+003 *
+
+    0.9612    0.0310    0.1516    1.1423
+
+  1.0e+003 *
+
+   -0.1811    0.9612    0.0310    4.2112
+
+  1.0e+003 *
+
+   -4.3923   -0.1811    0.9612   -3.5960
+
+  1.0e+004 *
+
+   -0.0796   -0.4392   -0.0181    3.0317
+
+  1.0e+004 *
+
+   -3.1114   -0.0796   -0.4392   -3.6202
+
+  1.0e+005 *
+
+    0.0509   -0.3111   -0.0080   -1.6009
+
+  1.0e+005 *
+
+    1.6518    0.0509   -0.3111    1.3887
+
+  1.0e+006 *
+
+    0.0263    0.1652    0.0051   -1.2530
+
+  1.0e+006 *
+
+    1.2793    0.0263    0.1652    1.4683
+
+  1.0e+006 *
+
+   -0.1891    1.2793    0.0263    7.4330
+
+  1.0e+006 *
+
+   -7.6221   -0.1891    1.2793   -6.5227
+
+  1.0e+007 *
+
+   -0.1099   -0.7622   -0.0189    6.2487
+
+Error in ==> <a href="matlab: opentoline('D:\partizione_E_Giunta\MieiMatlab\Calcolo Numerico\MinimNewtonDF.m',13,1)">MinimNewtonDF at 13</a>
+xk=xiniz; xk2=xiniz1; xk1=(xk+xk2)/2; k=1; hk=xk-xk1; hk1=xk1-xk2;
+
+{??? Output argument "minimo" (and maybe others) not assigned during call to "D:\partizione_E_Giunta\MieiMatlab\Calcolo
+Numerico\MinimNewtonDF.m>MinimNewtonDF".
+} 
+figure(2); fplot(df1,[-2,2])
+grid
+diary off
